@@ -1,5 +1,6 @@
 package dev.shubham911.productservices911.Models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class Product extends BaseModel{
 
     private double price;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST} )
     private Category category;
 
     private String imageUrl;
