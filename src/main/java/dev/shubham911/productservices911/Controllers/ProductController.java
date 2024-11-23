@@ -5,6 +5,7 @@ import dev.shubham911.productservices911.Services.ProductService;
 import dev.shubham911.productservices911.dtos.CreateProductRequestDto;
 import dev.shubham911.productservices911.dtos.ErrorDto;
 import dev.shubham911.productservices911.exceptions.ProductNotFoundException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class ProductController {
 
     public ProductService productService;
 
-    public ProductController(ProductService productService){
+    public ProductController(@Qualifier("myProductService") ProductService productService){
         this.productService = productService;
     }
 
