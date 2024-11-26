@@ -8,6 +8,7 @@ import dev.shubham911.productservices911.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("myProductService")
 public class MyProductService implements ProductService {
@@ -21,12 +22,18 @@ public class MyProductService implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return List.of();
+        return productRepository.findAll();
+
     }
 
     @Override
     public Product getSingleProduct(long id) throws ProductNotFoundException {
-        return null;
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isEmpty()){
+            throw new ProductNotFoundException("Product not Found");
+
+        }
+        return product.get();
     }
 
     @Override
