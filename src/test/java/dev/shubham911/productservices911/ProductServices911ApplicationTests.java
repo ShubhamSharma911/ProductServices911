@@ -37,4 +37,12 @@ class ProductServices911ApplicationTests {
 		Product product = productRepository.getProductWithSpecificTitleAndId("fridge", 7L);
 		System.out.println(product.getTitle());
 	}
+
+	@Test
+	public void testingQueries4(){
+		List<Product> products = productRepository.getProductWithSpecificTitle("s");
+		for(Product p : products){
+			System.out.println(p.getTitle());
+		}
+	}
 }

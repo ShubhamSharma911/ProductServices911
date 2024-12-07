@@ -14,21 +14,17 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product,Long> {
     Product save(Product product);
 
-    @Override
+    Product findByIdIs(long id);
+
     List<Product> findAll();
 
-    @Override
-    Optional<Product> findById(Long id);
-
     List<Product> findByCategory(Category category);
+    // hql queries
+    @Query("select p from Product p where p.category.title = :title and p.id = :id")
+    Product getProductWithSpecificTitleAndId(@Param("title") String title,@Param("id")Long id);
+    // native queries
 
-    List<Product> findAllByCategory_Title(String title);
-
-    List<Product> findAllByCategory_Id(Long CategoryId);
-
-    List<Product> findAllByTitleStartingWithAndIdEqualsAndPriceLessThan(String startingWith, Long id, Double price);
-
-    @Query("select p from Product p where p.category.title = :title and p.id = :id ")
-    Product getProductWithSpecificTitleAndId(@Param("title")String title, @Param("id")Long id );
+    @Query(value = "select * from product where title = :title")
+    List<Product> getProductWithSpecificTitle(@Param("title") String title);
 
 }
