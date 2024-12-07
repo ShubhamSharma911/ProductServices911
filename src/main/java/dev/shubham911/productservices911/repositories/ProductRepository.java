@@ -3,6 +3,8 @@ package dev.shubham911.productservices911.repositories;
 import dev.shubham911.productservices911.Models.Category;
 import dev.shubham911.productservices911.Models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,5 +27,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findAllByCategory_Id(Long CategoryId);
 
     List<Product> findAllByTitleStartingWithAndIdEqualsAndPriceLessThan(String startingWith, Long id, Double price);
+
+    @Query("select p from Product p where p.category.title = :title and p.id = :id ")
+    Product getProductWithSpecificTitleAndId(@Param("title")String title, @Param("id")Long id );
 
 }

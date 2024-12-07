@@ -1,5 +1,6 @@
 package dev.shubham911.productservices911.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -26,6 +27,7 @@ public class Product extends BaseModel{
     private double price;
 
     @ManyToOne(cascade = {CascadeType.PERSIST} )
+    @JsonIgnore
     private Category category;
 
     private String imageUrl;

@@ -18,8 +18,23 @@ class ProductServices911ApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
 	void testingQueries(){
-		List<Product> products = productRepository.findAllByCategory_Title("Electronics");
-		System.out.println(products);
+		List<Product> products = productRepository.findAll();
+		if(products == null|| products.isEmpty()){
+			System.out.println("No products found");
+		}
+		else{
+			System.out.println("Found "+products.size()+" products");
+		}
+		for(Product p : products){
+			System.out.println(p.getTitle());
+		}
+	}
+
+	@Test
+	public void testingQueries2(){
+		Product product = productRepository.getProductWithSpecificTitleAndId("fridge", 7L);
+		System.out.println(product.getTitle());
 	}
 }

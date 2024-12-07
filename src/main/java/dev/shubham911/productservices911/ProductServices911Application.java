@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ProductServices911Application {
 
 	public static void main(String[] args) {
-
-
 		SpringApplication.run(ProductServices911Application.class, args);
 	}
 
