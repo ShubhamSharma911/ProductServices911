@@ -34,7 +34,7 @@ public class Product extends BaseModel{
 
 
 
-    // we can over write the getters and setters method
+    // we can override the getters and setters method
 
 
 }

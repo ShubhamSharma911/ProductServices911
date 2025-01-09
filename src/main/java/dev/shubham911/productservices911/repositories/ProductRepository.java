@@ -2,6 +2,7 @@ package dev.shubham911.productservices911.repositories;
 
 import dev.shubham911.productservices911.Models.Category;
 import dev.shubham911.productservices911.Models.Product;
+import dev.shubham911.productservices911.repositories.projections.ProductWithTitleAndId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,7 +25,11 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     Product getProductWithSpecificTitleAndId(@Param("title") String title,@Param("id")Long id);
     // native queries
 
-    @Query(value = "select * from product where title = :title")
+    @Query(value = "select * from product where title = :title", nativeQuery = true)
     List<Product> getProductWithSpecificTitle(@Param("title") String title);
+
+    @Query("select p from Product p where p.title = :title and p.id = :id")
+    ProductWithTitleAndId getProductWithSpecificTitleAndId2(@Param("title") String title, @Param("id") Long id);
+
 
 }

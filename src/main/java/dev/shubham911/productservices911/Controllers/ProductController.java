@@ -36,6 +36,12 @@ public class ProductController {
 
     GET / product
      */
+
+    @GetMapping("/product-health")
+        public String healthCheck() {
+            return "service is running";
+        }
+
     @GetMapping("/products")
     public List<Product> getAllProducts(){
 
